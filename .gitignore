@@ -1,0 +1,17 @@
+# Environment
+.env
+.venv/
+venv/
+
+# Logs
+audit.log
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Database
+secure_ai.db
+
+# OS files
+.DS_Store
