@@ -4,6 +4,16 @@ A production-ready AI API Gateway built with **FastAPI** that secures AI interac
 
 ---
 
+## 🌐 Live Demo
+
+| Service | URL |
+|---------|-----|
+| 🚀 Live API | https://secure-ai-api-gateway.onrender.com |
+| 📖 Swagger UI | https://secure-ai-api-gateway.onrender.com/docs |
+| 📚 ReDoc | https://secure-ai-api-gateway.onrender.com/redoc |
+
+---
+
 ## 🚀 Features
 
 - 🔑 User Registration
@@ -26,7 +36,7 @@ A production-ready AI API Gateway built with **FastAPI** that secures AI interac
 | Category | Technology |
 |----------|------------|
 | Backend | FastAPI |
-| Language | Python 3.12 |
+| Language | Python 3.x |
 | Database | SQLite |
 | ORM | SQLAlchemy |
 | Authentication | JWT |
@@ -35,6 +45,7 @@ A production-ready AI API Gateway built with **FastAPI** that secures AI interac
 | API Docs | Swagger/OpenAPI |
 | Testing | Pytest |
 | Rate Limiting | SlowAPI |
+| Deployment | Render |
 
 ---
 
@@ -48,6 +59,7 @@ secure-ai-api-gateway/
 │   ├── auth.py
 │   ├── database.py
 │   ├── limiter.py
+│   ├── llm.py
 │   ├── main.py
 │   ├── models.py
 │   ├── routes.py
@@ -95,7 +107,7 @@ secure-ai-api-gateway/
 Clone the repository:
 
 ```bash
-git clone https://github.com/<your-username>/secure-ai-api-gateway.git
+git clone https://github.com/Karthikeya172001/secure-ai-api-gateway.git
 
 cd secure-ai-api-gateway
 ```
@@ -134,19 +146,25 @@ uvicorn app.main:app --reload
 
 ---
 
+# ☁️ Deployment
+
+This application is deployed on **Render**.
+
+**Live URL**
+
+https://secure-ai-api-gateway.onrender.com
+
+---
+
 # 📖 API Documentation
 
-Swagger UI:
+Swagger UI
 
-```
-http://127.0.0.1:8000/docs
-```
+https://secure-ai-api-gateway.onrender.com/docs
 
-ReDoc:
+ReDoc
 
-```
-http://127.0.0.1:8000/redoc
-```
+https://secure-ai-api-gateway.onrender.com/redoc
 
 ---
 
@@ -166,7 +184,7 @@ http://127.0.0.1:8000/redoc
 
 | Method | Endpoint | Description |
 |---------|----------|-------------|
-| GET | /profile | Get user profile |
+| GET | /profile | Get authenticated user profile |
 | POST | /chat | AI Chat Endpoint |
 
 ---
@@ -181,17 +199,12 @@ http://127.0.0.1:8000/redoc
 
 # 🔐 Security Features
 
-✅ JWT Authentication
-
-✅ Password Hashing (bcrypt)
-
-✅ Role-Based Access Control
-
-✅ Prompt Injection Detection
-
-✅ Audit Logging
-
-✅ Rate Limiting
+- ✅ JWT Authentication
+- ✅ Password Hashing (bcrypt)
+- ✅ Role-Based Access Control (RBAC)
+- ✅ Prompt Injection Detection
+- ✅ Audit Logging
+- ✅ Rate Limiting
 
 ---
 
@@ -201,7 +214,7 @@ http://127.0.0.1:8000/redoc
 pytest
 ```
 
-Expected:
+Expected output:
 
 ```text
 4 passed
@@ -213,15 +226,11 @@ Expected:
 
 ## 🏠 Swagger Home
 
-Overview of all available API endpoints documented using Swagger UI.
-
 ![Swagger Home](screenshots/swagger-home.png)
 
 ---
 
 ## 👤 User Registration
-
-Successful user registration through the `/register` endpoint.
 
 ![Register](screenshots/register.png)
 
@@ -229,15 +238,11 @@ Successful user registration through the `/register` endpoint.
 
 ## 🔑 User Login
 
-JWT token generation after successful authentication.
-
 ![Login Success](screenshots/login-success.png)
 
 ---
 
 ## 👤 Protected Profile Endpoint
-
-Authenticated user accessing the protected `/profile` endpoint using a valid JWT token.
 
 ![Profile Endpoint](screenshots/profile-endpoint.png)
 
@@ -245,15 +250,11 @@ Authenticated user accessing the protected `/profile` endpoint using a valid JWT
 
 ## 🤖 AI Chat Endpoint
 
-Authenticated users interacting with the AI Chat endpoint with prompt validation and security checks.
-
 ![Chat Endpoint](screenshots/chat-endpoint.png)
 
 ---
 
 ## 🔄 Password Reset
-
-Password reset endpoint securely updating the user's password.
 
 ![Password Reset](screenshots/reset.png)
 
@@ -261,9 +262,9 @@ Password reset endpoint securely updating the user's password.
 
 ## 📋 Admin Audit Logs
 
-Admin-only endpoint displaying application audit logs.
-
 ![Admin Logs](screenshots/admin-logs.png)
+
+---
 
 # 🚀 Future Enhancements
 
@@ -282,10 +283,10 @@ Admin-only endpoint displaying application audit logs.
 
 **Gorityala Karthikeya**
 
-Software Engineer
+Software Engineer | Backend Developer | Python | FastAPI
 
 - GitHub: https://github.com/Karthikeya172001
-- LinkedIn: *(Add your LinkedIn profile URL here)*
+- LinkedIn: https://www.linkedin.com/in/YOUR-LINKEDIN/
 
 ---
 
