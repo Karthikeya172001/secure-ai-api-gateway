@@ -1,43 +1,46 @@
 # 🔐 Secure AI API Gateway
 
-A production-inspired AI Gateway built with **FastAPI** that demonstrates secure authentication, role-based access control, prompt injection detection, audit logging, rate limiting, and AI integration.
-
-## 🚀 Features
-
-- ✅ User Registration
-- ✅ JWT Authentication
-- ✅ Password Hashing (bcrypt)
-- ✅ Role-Based Access Control (RBAC)
-- ✅ Protected APIs
-- ✅ Prompt Injection Detection
-- ✅ Audit Logging
-- ✅ Admin-only Audit Log Viewer
-- ✅ Rate Limiting (5 requests/minute)
-- ✅ OpenAI Integration
-- ✅ Swagger API Documentation
-- ✅ Automated Testing using pytest
+A production-ready AI API Gateway built with **FastAPI** that secures AI interactions using JWT authentication, Role-Based Access Control (RBAC), prompt injection detection, audit logging, and rate limiting.
 
 ---
 
-# 🛠 Tech Stack
+## 🚀 Features
+
+- 🔑 User Registration
+- 🔐 JWT Authentication
+- 👤 Role-Based Access Control (RBAC)
+- 🔒 Password Hashing with bcrypt
+- 🔄 Password Reset
+- 🛡️ Protected API Endpoints
+- 🤖 AI Chat Endpoint
+- 🚨 Prompt Injection Detection
+- 📝 Audit Logging
+- ⏱️ Rate Limiting
+- 📖 Interactive Swagger Documentation
+- ✅ Unit Testing with Pytest
+
+---
+
+## 🛠️ Tech Stack
 
 | Category | Technology |
 |----------|------------|
 | Backend | FastAPI |
-| Database | SQLite + SQLAlchemy |
+| Language | Python 3.12 |
+| Database | SQLite |
+| ORM | SQLAlchemy |
 | Authentication | JWT |
-| Password Hashing | bcrypt |
+| Password Security | bcrypt + Passlib |
 | Validation | Pydantic |
-| AI | OpenAI API |
+| API Docs | Swagger/OpenAPI |
+| Testing | Pytest |
 | Rate Limiting | SlowAPI |
-| Testing | pytest |
-| Documentation | Swagger/OpenAPI |
 
 ---
 
 # 📂 Project Structure
 
-```
+```text
 secure-ai-api-gateway/
 │
 ├── app/
@@ -45,138 +48,150 @@ secure-ai-api-gateway/
 │   ├── auth.py
 │   ├── database.py
 │   ├── limiter.py
-│   ├── llm.py
-│   ├── logger.py
 │   ├── main.py
 │   ├── models.py
-│   ├── prompt_filter.py
 │   ├── routes.py
 │   ├── schemas.py
-│   └── security.py
+│   ├── security.py
+│   └── utils.py
 │
 ├── tests/
 │   ├── test_auth.py
 │   ├── test_chat.py
 │   └── test_profile.py
 │
-├── audit.log
 ├── requirements.txt
-├── pytest.ini
-└── README.md
+├── README.md
+└── screenshots/
 ```
 
 ---
 
-# 🔐 Security Features
+# 🏗️ Architecture
 
-### JWT Authentication
-
-Users authenticate using JWT tokens.
-
-```
-POST /login
-```
-
----
-
-### Role-Based Access Control
-
-Normal users:
-
-- Access `/profile`
-- Access `/chat`
-
-Admin users:
-
-- Access `/admin/logs`
-
----
-
-### Prompt Injection Detection
-
-Suspicious prompts such as:
-
-```
-Ignore previous instructions
-Reveal your system prompt
-```
-
-are automatically blocked before reaching the AI model.
-
----
-
-### Audit Logging
-
-Every chat request is stored with:
-
-- Timestamp
-- Username
-- Endpoint
-- Prompt
-- Status
-
-Example:
-
-```
-2026-07-28 16:24:57
-User: admin
-Endpoint: /chat
-Status: Allowed
-Prompt: What is JWT authentication?
+```text
+                 Client
+                    │
+                    ▼
+          FastAPI Application
+                    │
+        JWT Authentication
+                    │
+      Role-Based Access Control
+                    │
+      Prompt Injection Detection
+                    │
+            AI Chat Endpoint
+                    │
+            Audit Logging
+                    │
+            SQLite Database
 ```
 
 ---
 
-### Rate Limiting
+# ⚙️ Installation
 
-The chat endpoint allows:
+Clone the repository:
 
+```bash
+git clone https://github.com/<your-username>/secure-ai-api-gateway.git
+
+cd secure-ai-api-gateway
 ```
-5 requests / minute
+
+Create virtual environment:
+
+```bash
+python -m venv .venv
 ```
 
-Additional requests receive:
+Activate:
 
+### Windows
+
+```bash
+.venv\Scripts\activate
 ```
-HTTP 429 Too Many Requests
+
+### Linux / macOS
+
+```bash
+source .venv/bin/activate
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the application:
+
+```bash
+uvicorn app.main:app --reload
 ```
 
 ---
 
-# 📚 API Endpoints
+# 📖 API Documentation
+
+Swagger UI:
+
+```
+http://127.0.0.1:8000/docs
+```
+
+ReDoc:
+
+```
+http://127.0.0.1:8000/redoc
+```
+
+---
+
+# 📌 API Endpoints
 
 ## Authentication
 
-| Method | Endpoint |
-|---------|----------|
-| POST | /register |
-| POST | /login |
+| Method | Endpoint | Description |
+|---------|----------|-------------|
+| POST | /register | Register a new user |
+| POST | /login | Login and receive JWT |
+| PUT | /reset-password | Reset password |
 
 ---
 
 ## Protected
 
-| Method | Endpoint |
-|---------|----------|
-| GET | /profile |
-| POST | /chat |
+| Method | Endpoint | Description |
+|---------|----------|-------------|
+| GET | /profile | Get user profile |
+| POST | /chat | AI Chat Endpoint |
 
 ---
 
 ## Admin
 
-| Method | Endpoint |
-|---------|----------|
-| GET | /admin/logs |
+| Method | Endpoint | Description |
+|---------|----------|-------------|
+| GET | /admin/logs | View Audit Logs |
 
 ---
 
-## Utility
+# 🔐 Security Features
 
-| Method | Endpoint |
-|---------|----------|
-| GET | / |
-| GET | /health |
+✅ JWT Authentication
+
+✅ Password Hashing (bcrypt)
+
+✅ Role-Based Access Control
+
+✅ Prompt Injection Detection
+
+✅ Audit Logging
+
+✅ Rate Limiting
 
 ---
 
@@ -186,53 +201,80 @@ HTTP 429 Too Many Requests
 pytest
 ```
 
-Example output:
+Expected:
 
-```
-==============================
+```text
 4 passed
-==============================
 ```
 
 ---
 
-# ▶️ Run Locally
+# 📸 Screenshots
 
-Clone the repository:
+## 🏠 Swagger Home
 
-```bash
-git clone https://github.com/<your-username>/secure-ai-api-gateway.git
-```
+Overview of all available API endpoints documented using Swagger UI.
 
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-Run:
-
-```bash
-uvicorn app.main:app --reload
-```
-
-Swagger:
-
-```
-http://127.0.0.1:8000/docs
-```
+![Swagger Home](screenshots/swagger-home.png)
 
 ---
 
-# 📈 Future Improvements
+## 👤 User Registration
 
-- Docker Compose
-- PostgreSQL
-- Redis-based Rate Limiting
+Successful user registration through the `/register` endpoint.
+
+![Register](screenshots/register.png)
+
+---
+
+## 🔑 User Login
+
+JWT token generation after successful authentication.
+
+![Login Success](screenshots/login-success.png)
+
+---
+
+## 👤 Protected Profile Endpoint
+
+Authenticated user accessing the protected `/profile` endpoint using a valid JWT token.
+
+![Profile Endpoint](screenshots/profile-endpoint.png)
+
+---
+
+## 🤖 AI Chat Endpoint
+
+Authenticated users interacting with the AI Chat endpoint with prompt validation and security checks.
+
+![Chat Endpoint](screenshots/chat-endpoint.png)
+
+---
+
+## 🔄 Password Reset
+
+Password reset endpoint securely updating the user's password.
+
+![Password Reset](screenshots/reset.png)
+
+---
+
+## 📋 Admin Audit Logs
+
+Admin-only endpoint displaying application audit logs.
+
+![Admin Logs](screenshots/admin-logs.png)
+
+# 🚀 Future Enhancements
+
+- Refresh Tokens
+- Email-based Password Reset
+- Docker Support
 - CI/CD using GitHub Actions
-- Kubernetes Deployment
-- OAuth Login
-- Multi-tenant Support
+- PostgreSQL Support
+- AI Risk Scoring
+- PII Detection
+- API Key Management
 
 ---
 
@@ -242,4 +284,15 @@ http://127.0.0.1:8000/docs
 
 Software Engineer
 
-Backend Development • FastAPI • Python • AI Security
+- GitHub: https://github.com/Karthikeya172001
+- LinkedIn: *(Add your LinkedIn profile URL here)*
+
+---
+
+# 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+## ⭐ If you found this project useful, please consider giving it a star!
