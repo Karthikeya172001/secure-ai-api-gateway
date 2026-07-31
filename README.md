@@ -1,6 +1,6 @@
 # 🔐 Secure AI API Gateway
 
-A production-ready AI API Gateway built with **FastAPI** that secures AI interactions using JWT authentication, Role-Based Access Control (RBAC), prompt injection detection, audit logging, and rate limiting.
+A production-ready AI API Gateway built with **FastAPI** that secures AI interactions using JWT Authentication, Role-Based Access Control (RBAC), Prompt Injection Detection, Audit Logging, Rate Limiting, and AI-powered responses using **Groq Llama 3.1**.
 
 ---
 
@@ -11,6 +11,7 @@ A production-ready AI API Gateway built with **FastAPI** that secures AI interac
 | 🚀 Live API | https://secure-ai-api-gateway.onrender.com |
 | 📖 Swagger UI | https://secure-ai-api-gateway.onrender.com/docs |
 | 📚 ReDoc | https://secure-ai-api-gateway.onrender.com/redoc |
+| ❤️ Health Check | https://secure-ai-api-gateway.onrender.com/health |
 
 ---
 
@@ -22,11 +23,12 @@ A production-ready AI API Gateway built with **FastAPI** that secures AI interac
 - 🔒 Password Hashing with bcrypt
 - 🔄 Password Reset
 - 🛡️ Protected API Endpoints
-- 🤖 AI Chat Endpoint
+- 🤖 AI Chat using Groq Llama 3.1
 - 🚨 Prompt Injection Detection
 - 📝 Audit Logging
 - ⏱️ Rate Limiting
 - 📖 Interactive Swagger Documentation
+- ☁️ Live Deployment on Render
 - ✅ Unit Testing with Pytest
 
 ---
@@ -42,7 +44,8 @@ A production-ready AI API Gateway built with **FastAPI** that secures AI interac
 | Authentication | JWT |
 | Password Security | bcrypt + Passlib |
 | Validation | Pydantic |
-| API Docs | Swagger/OpenAPI |
+| AI | Groq (Llama 3.1) |
+| API Documentation | Swagger / OpenAPI |
 | Testing | Pytest |
 | Rate Limiting | SlowAPI |
 | Deployment | Render |
@@ -72,9 +75,9 @@ secure-ai-api-gateway/
 │   ├── test_chat.py
 │   └── test_profile.py
 │
+├── screenshots/
 ├── requirements.txt
-├── README.md
-└── screenshots/
+└── README.md
 ```
 
 ---
@@ -82,22 +85,20 @@ secure-ai-api-gateway/
 # 🏗️ Architecture
 
 ```text
-                 Client
-                    │
-                    ▼
-          FastAPI Application
-                    │
-        JWT Authentication
-                    │
-      Role-Based Access Control
-                    │
+                    Client
+                       │
+                       ▼
+             FastAPI Application
+                       │
+        JWT Authentication & RBAC
+                       │
       Prompt Injection Detection
-                    │
-            AI Chat Endpoint
-                    │
-            Audit Logging
-                    │
-            SQLite Database
+                       │
+             AI Gateway (Groq)
+                       │
+              Audit Logging
+                       │
+              SQLite Database
 ```
 
 ---
@@ -112,13 +113,13 @@ git clone https://github.com/Karthikeya172001/secure-ai-api-gateway.git
 cd secure-ai-api-gateway
 ```
 
-Create virtual environment:
+Create a virtual environment:
 
 ```bash
 python -m venv .venv
 ```
 
-Activate:
+Activate it.
 
 ### Windows
 
@@ -138,6 +139,13 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
+Create a `.env` file:
+
+```env
+SECRET_KEY=your_secret_key
+GROQ_API_KEY=your_groq_api_key
+```
+
 Run the application:
 
 ```bash
@@ -148,7 +156,7 @@ uvicorn app.main:app --reload
 
 # ☁️ Deployment
 
-This application is deployed on **Render**.
+This project is deployed on **Render**.
 
 **Live URL**
 
@@ -158,11 +166,11 @@ https://secure-ai-api-gateway.onrender.com
 
 # 📖 API Documentation
 
-Swagger UI
+**Swagger UI**
 
 https://secure-ai-api-gateway.onrender.com/docs
 
-ReDoc
+**ReDoc**
 
 https://secure-ai-api-gateway.onrender.com/redoc
 
@@ -178,18 +186,14 @@ https://secure-ai-api-gateway.onrender.com/redoc
 | POST | /login | Login and receive JWT |
 | PUT | /reset-password | Reset password |
 
----
-
-## Protected
+### Protected
 
 | Method | Endpoint | Description |
 |---------|----------|-------------|
 | GET | /profile | Get authenticated user profile |
 | POST | /chat | AI Chat Endpoint |
 
----
-
-## Admin
+### Admin
 
 | Method | Endpoint | Description |
 |---------|----------|-------------|
@@ -205,6 +209,29 @@ https://secure-ai-api-gateway.onrender.com/redoc
 - ✅ Prompt Injection Detection
 - ✅ Audit Logging
 - ✅ Rate Limiting
+
+---
+
+# 🤖 AI Integration
+
+This project integrates with **Groq's OpenAI-compatible API** using the **Llama 3.1** model to generate AI-powered responses.
+
+### Example Request
+
+```json
+{
+  "prompt": "What is JWT Authentication?"
+}
+```
+
+### Example Response
+
+```json
+{
+  "user": "karthik",
+  "response": "JWT (JSON Web Token) is a secure method for transmitting information between parties..."
+}
+```
 
 ---
 
@@ -238,19 +265,19 @@ Expected output:
 
 ## 🔑 User Login
 
-![Login Success](screenshots/login-success.png)
+![Login](screenshots/login-success.png)
 
 ---
 
-## 👤 Protected Profile Endpoint
+## 👤 Protected Profile
 
-![Profile Endpoint](screenshots/profile-endpoint.png)
+![Profile](screenshots/profile-endpoint.png)
 
 ---
 
-## 🤖 AI Chat Endpoint
+## 🤖 AI Chat
 
-![Chat Endpoint](screenshots/chat-endpoint.png)
+![Chat](screenshots/chat-endpoint.png)
 
 ---
 
@@ -269,24 +296,29 @@ Expected output:
 # 🚀 Future Enhancements
 
 - Refresh Tokens
-- Email-based Password Reset
+- Email Verification
 - Docker Support
 - CI/CD using GitHub Actions
 - PostgreSQL Support
+- Redis Caching
+- API Key Management
 - AI Risk Scoring
 - PII Detection
-- API Key Management
 
 ---
 
 # 👨‍💻 Author
 
-**Gorityala Karthikeya**
+## Gorityala Karthikeya
 
-Software Engineer | Backend Developer | Python | FastAPI
+Software Engineer | Backend Developer | Python | FastAPI | AI
 
-- GitHub: https://github.com/Karthikeya172001
-- LinkedIn: https://www.linkedin.com/in/YOUR-LINKEDIN/
+### 🔗 Connect with Me
+
+- 💻 **GitHub:** https://github.com/Karthikeya172001
+- 💼 **LinkedIn:** https://www.linkedin.com/in/karthikeya-gorityala/
+- 🚀 **Live Demo:** https://secure-ai-api-gateway.onrender.com
+- 📖 **Swagger UI:** https://secure-ai-api-gateway.onrender.com/docs
 
 ---
 
@@ -296,4 +328,6 @@ This project is licensed under the MIT License.
 
 ---
 
-## ⭐ If you found this project useful, please consider giving it a star!
+## ⭐ Support
+
+If you found this project useful, please consider giving it a ⭐ on GitHub.
