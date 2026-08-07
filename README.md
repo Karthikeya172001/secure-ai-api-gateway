@@ -105,25 +105,25 @@ This project demonstrates backend software engineering concepts including secure
 
 ### 🔑 User Login
 
-![User Login](screenshots/login.png)
+![User Login](screenshots/login-success.png)
 
 ---
 
 ### 👤 Protected Profile
 
-![Protected Profile](screenshots/profile.png)
+![Protected Profile](screenshots/profile-endpoint.png)
 
 ---
 
 ### 🤖 AI Chat
 
-![AI Chat](screenshots/chat.png)
+![AI Chat](screenshots/chat-endpoint.png)
 
 ---
 
 ### 🔄 Password Reset
 
-![Password Reset](screenshots/reset-password.png)
+![Password Reset](screenshots/reset.png)
 
 ---
 
