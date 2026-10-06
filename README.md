@@ -1,53 +1,55 @@
 # 🔐 Secure AI API Gateway
 
-A production-ready AI API Gateway built using **Python**, **FastAPI**, and **Groq Llama 3.1**. The project secures AI interactions through **JWT Authentication**, **Role-Based Access Control (RBAC)**, **Prompt Injection Detection**, **Audit Logging**, **Rate Limiting**, and **RESTful APIs**.
+A secure AI API Gateway built with **Python, FastAPI, and Groq Llama 3.1**.
 
-This project demonstrates backend software engineering concepts including secure authentication, AI integration, API security, prompt filtering, audit logging, database management, and cloud deployment.
+The gateway provides authentication, authorization, API security, prompt injection detection, audit logging, rate limiting, and AI-powered REST APIs.
+
+This project demonstrates backend engineering concepts including **secure authentication, RBAC, API security, AI/LLM integration, database management, automated testing, and cloud deployment**.
 
 ---
 
-# 🚀 Live Demo
+## 🚀 Live Demo
 
 | Service | URL |
-|---------|-----|
+|---|---|
 | 🌐 Live API | https://secure-ai-api-gateway.onrender.com |
 | 📖 Swagger UI | https://secure-ai-api-gateway.onrender.com/docs |
 | 📚 ReDoc | https://secure-ai-api-gateway.onrender.com/redoc |
 | ❤️ Health Check | https://secure-ai-api-gateway.onrender.com/health |
-| 💻 GitHub Repository | https://github.com/Karthikeya172001/secure-ai-api-gateway |
+| 💻 GitHub | https://github.com/Karthikeya172001/secure-ai-api-gateway |
 
 ---
 
-# ✨ Features
+## ✨ Features
 
-- 🔑 User Registration
-- 🔐 JWT Authentication
+- 🔑 User registration
+- 🔐 JWT authentication
 - 👤 Role-Based Access Control (RBAC)
-- 🔒 Password Hashing using bcrypt
-- 🔄 Password Reset
-- 🛡 Protected API Endpoints
-- 🤖 AI Chat using Groq Llama 3.1
-- 🚨 Prompt Injection Detection
-- 📝 Audit Logging
-- ⏱ Rate Limiting
-- 📖 Interactive Swagger Documentation
-- ☁ Live Deployment on Render
-- ✅ Unit Testing with Pytest
+- 🔒 Password hashing using bcrypt
+- 🔄 Password reset
+- 🛡 Protected REST API endpoints
+- 🤖 AI chat using Groq Llama 3.1
+- 🚨 Prompt injection detection
+- 📝 Audit logging
+- ⏱ Rate limiting
+- 📖 Swagger / OpenAPI documentation
+- ☁️ Cloud deployment on Render
+- 🧪 Automated testing with Pytest
 
 ---
 
-# 🛠 Technologies Used
+## 🛠️ Technologies
 
 | Category | Technology |
-|----------|------------|
+|---|---|
 | Language | Python 3.x |
 | Backend | FastAPI |
 | Database | SQLite |
 | ORM | SQLAlchemy |
 | Authentication | JWT |
-| Password Security | bcrypt + Passlib |
+| Password Security | bcrypt / Passlib |
 | Validation | Pydantic |
-| AI | Groq (Llama 3.1) |
+| AI | Groq / Llama 3.1 |
 | API Documentation | Swagger / OpenAPI |
 | Testing | Pytest |
 | Rate Limiting | SlowAPI |
@@ -55,77 +57,80 @@ This project demonstrates backend software engineering concepts including secure
 
 ---
 
-# 🏗 Architecture
+## 🏗️ Architecture
 
 ```text
-                 Client
+                    Client
+                      │
+                      ▼
+              FastAPI REST API
+                      │
+              ┌───────┴────────┐
+              │                │
+        Rate Limiting      Authentication
+                                 │
+                          JWT + RBAC
+                                 │
+                    ┌────────────┴────────────┐
+                    │                         │
+             Protected APIs             Admin APIs
+                    │                         │
+                    ▼                         ▼
+             Prompt Detection          Audit Logging
                     │
                     ▼
-          FastAPI REST API
+             Groq Llama 3.1
                     │
-      JWT Authentication & RBAC
+                    ▼
+              AI Response
+
+                 SQLite
+                    ▲
                     │
-    Prompt Injection Detection
-                    │
-         Groq Llama 3.1 API
-                    │
-            Audit Logging
-                    │
-             SQLite Database
+             Application Data
 ```
 
 ---
 
-# 📖 How It Works
+## 📖 How It Works
 
-1. A user registers a new account.
+1. A user registers an account.
 2. The user logs in and receives a JWT access token.
-3. Protected API endpoints validate the JWT token.
-4. Role-Based Access Control (RBAC) determines user permissions.
-5. Prompt Injection Detection analyzes prompts before they are sent to the AI model.
-6. Safe prompts are forwarded to the Groq Llama 3.1 model.
-7. AI-generated responses are returned to the user.
-8. Audit logs record important system activities.
+3. Protected endpoints validate the JWT token.
+4. RBAC determines whether the user has permission to access an endpoint.
+5. Rate limiting helps control API request volume.
+6. Prompts sent to the AI endpoint are analyzed for potential prompt injection.
+7. Safe prompts are forwarded to the Groq Llama 3.1 model.
+8. The AI response is returned to the client.
+9. Important system activities are recorded through audit logging.
 
 ---
 
-# 📸 Screenshots
+## 📸 Screenshots
 
-### 🏠 Swagger Home
+### 🏠 Swagger UI
 
 ![Swagger Home](screenshots/swagger-home.png)
-
----
 
 ### 👤 User Registration
 
 ![User Registration](screenshots/register.png)
 
----
-
 ### 🔑 User Login
 
 ![User Login](screenshots/login-success.png)
-
----
 
 ### 👤 Protected Profile
 
 ![Protected Profile](screenshots/profile-endpoint.png)
 
----
-
 ### 🤖 AI Chat
 
 ![AI Chat](screenshots/chat-endpoint.png)
 
----
-
 ### 🔄 Password Reset
 
 ![Password Reset](screenshots/reset.png)
-
----
 
 ### 📋 Admin Audit Logs
 
@@ -133,7 +138,7 @@ This project demonstrates backend software engineering concepts including secure
 
 ---
 
-# 📂 Project Structure
+## 📂 Project Structure
 
 ```text
 secure-ai-api-gateway/
@@ -163,45 +168,42 @@ secure-ai-api-gateway/
 
 ---
 
-# ⚙ Local Setup
+## ⚙️ Local Setup
 
-Clone the repository:
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/Karthikeya172001/secure-ai-api-gateway.git
-```
-
-Navigate to the project:
-
-```bash
 cd secure-ai-api-gateway
 ```
 
-Create a virtual environment:
+### 2. Create a virtual environment
 
 ```bash
 python -m venv .venv
 ```
 
-Activate it.
+### 3. Activate the environment
 
-### Windows
+**Windows**
 
 ```bash
 .venv\Scripts\activate
 ```
 
-### Linux/macOS
+**Linux / macOS**
 
 ```bash
 source .venv/bin/activate
 ```
 
-Install dependencies:
+### 4. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
+
+### 5. Configure environment variables
 
 Create a `.env` file:
 
@@ -210,54 +212,64 @@ SECRET_KEY=your_secret_key
 GROQ_API_KEY=your_groq_api_key
 ```
 
-Run the application:
+Never commit real API keys or secrets to GitHub.
+
+### 6. Run the application
 
 ```bash
 uvicorn app.main:app --reload
 ```
 
+Open Swagger UI:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
 ---
 
-# 📡 API Endpoints
+## 📡 API Endpoints
 
-## Authentication
+### Authentication
 
 | Method | Endpoint | Description |
-|--------|----------|-------------|
+|---|---|---|
 | POST | `/register` | Register a new user |
 | POST | `/login` | Login and receive JWT |
 | PUT | `/reset-password` | Reset password |
 
-## Protected
+### Protected
 
 | Method | Endpoint | Description |
-|--------|----------|-------------|
+|---|---|---|
 | GET | `/profile` | Get authenticated user profile |
-| POST | `/chat` | AI Chat Endpoint |
+| POST | `/chat` | Send a prompt to the AI service |
 
-## Admin
+### Admin
 
 | Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/admin/logs` | View Audit Logs |
+|---|---|---|
+| GET | `/admin/logs` | View audit logs |
 
 ---
 
-# 🔒 Security Features
+## 🔒 Security
 
-- JWT Authentication
-- Password Hashing using bcrypt
-- Role-Based Access Control (RBAC)
-- Prompt Injection Detection
-- Audit Logging
-- Rate Limiting
-- Protected REST APIs
+The project implements several API security mechanisms:
+
+- JWT authentication
+- Password hashing
+- Role-Based Access Control
+- Protected endpoints
+- Rate limiting
+- Prompt injection detection
+- Audit logging
 
 ---
 
-# 🤖 AI Integration
+## 🤖 AI Integration
 
-This project integrates with **Groq's OpenAI-compatible API** using the **Llama 3.1** model to generate AI-powered responses.
+The gateway integrates with **Groq's OpenAI-compatible API** using the **Llama 3.1** model.
 
 ### Example Request
 
@@ -278,39 +290,37 @@ This project integrates with **Groq's OpenAI-compatible API** using the **Llama 
 
 ---
 
-# 🧪 Running Tests
+## 🧪 Running Tests
+
+Run:
 
 ```bash
 pytest
 ```
 
-Expected output:
-
-```text
-4 passed
-```
+Make sure the test result shown here matches the current repository before adding a specific expected count.
 
 ---
 
-# 🚀 Future Improvements
+## 🚀 Future Improvements
 
-- Refresh Tokens
-- Email Verification
-- Docker Support
+- Refresh tokens
+- Email verification
+- Docker support
 - CI/CD with GitHub Actions
-- PostgreSQL Support
-- Redis Caching
-- API Key Management
-- AI Risk Scoring
-- Personally Identifiable Information (PII) Detection
+- PostgreSQL support
+- Redis caching
+- API key management
+- AI risk scoring
+- Personally Identifiable Information (PII) detection
 
 ---
 
-# 👨‍💻 Author
+## 👨‍💻 Author
 
 **Gorityala Karthikeya**
 
-📧 Email: gorityalakarthikeya@gmail.com
+📧 gorityalakarthikeya@gmail.com
 
 🔗 LinkedIn: https://www.linkedin.com/in/karthikeya-gorityala
 
@@ -322,12 +332,12 @@ Expected output:
 
 ---
 
-# 📄 License
+## 📄 License
 
 This project is licensed under the MIT License.
 
 ---
 
-# ⭐ Support
+## ⭐ Support
 
-If you found this project useful, please consider giving it a ⭐ on GitHub.
+If you found this project useful, consider giving it a ⭐ on GitHub.
