@@ -6,7 +6,14 @@ from app.security import admin_required
 router = APIRouter(tags=["Admin"])
 
 
-@router.get("/admin/logs")
+@router.get(
+    "/admin/logs",
+    responses={
+        401: {"description": "Authentication required"},
+        403: {"description": "Admin access required"},
+        404: {"description": "Audit log not found"},
+    },
+)
 def get_logs(current_user=Depends(admin_required)):
     log_file = Path("audit.log")
 
