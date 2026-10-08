@@ -18,7 +18,7 @@ def ask_llm(prompt: str) -> str:
         return f"Mock AI Response: {prompt}"
 
     response = client.chat.completions.create(
-        model="llama-3.1-8b-instant",
+        model="openai/gpt-oss-20b",
         messages=[
             {
                 "role": "user",
