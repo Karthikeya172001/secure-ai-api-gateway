@@ -152,7 +152,7 @@ POST /chat
 
 ### AI Chat
 
-![AI Chat](screenshots/gate - chat.png)
+![AI Chat](screenshots/gate-chat.png)
 
 ### Password Reset
 
