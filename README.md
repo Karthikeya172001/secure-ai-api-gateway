@@ -2,9 +2,9 @@
 
 A security-focused AI API Gateway built with **Python, FastAPI, and Groq**.
 
-The gateway provides JWT authentication, role-based access control (RBAC), prompt-injection detection, rate limiting, audit logging, and controlled access to LLM APIs.
+This project provides secure access to LLM APIs with **JWT authentication, Role-Based Access Control (RBAC), prompt-injection detection, rate limiting, and audit logging**.
 
-This project demonstrates backend engineering and AI security concepts including secure authentication, authorization, API security, LLM integration, database management, automated testing, and cloud deployment.
+Built to demonstrate practical backend engineering, API security, and AI/LLM integration.
 
 ---
 
@@ -12,271 +12,313 @@ This project demonstrates backend engineering and AI security concepts including
 
 | Service | URL |
 |---|---|
-| 🌐 Live API | https://secure-ai-api-gateway.onrender.com |
-| 📖 Swagger UI | https://secure-ai-api-gateway.onrender.com/docs |
-| 📚 ReDoc | https://secure-ai-api-gateway.onrender.com/redoc |
-| ❤️ Health Check | https://secure-ai-api-gateway.onrender.com/health |
-| 💻 GitHub | https://github.com/Karthikeya172001/secure-ai-api-gateway |
+| Live API | https://secure-ai-api-gateway.onrender.com |
+| Swagger UI | https://secure-ai-api-gateway.onrender.com/docs |
+| ReDoc | https://secure-ai-api-gateway.onrender.com/redoc |
+| Health Check | https://secure-ai-api-gateway.onrender.com/health |
+| GitHub | https://github.com/Karthikeya172001/secure-ai-api-gateway |
 
 ---
 
 ## ✨ Features
 
-- 🔑 User registration
-- 🔐 JWT authentication
-- 👤 Role-Based Access Control (RBAC)
-- 🔒 Password hashing using bcrypt
-- 🔄 Password reset
-- 🛡️ Protected REST API endpoints
-- 🤖 AI chat using Groq (`openai/gpt-oss-20b`)
-- 🚨 Prompt-injection detection
-- 📝 Audit logging
-- ⏱️ Rate limiting
-- 📖 Swagger / OpenAPI documentation
-- ☁️ Cloud deployment on Render
-- 🧪 Automated testing with Pytest
+- JWT authentication
+- Role-Based Access Control (RBAC)
+- Password hashing with bcrypt
+- Protected REST API endpoints
+- LLM integration using Groq
+- Prompt-injection detection
+- API rate limiting
+- Audit logging
+- Swagger / OpenAPI documentation
+- Pytest automated testing
+- Render cloud deployment
 
 ---
 
-## 🛠️ Technologies
+## 🛠️ Tech Stack
 
-| Category | Technology |
-|---|---|
-| Language | Python 3.x |
-| Backend | FastAPI |
-| Database | SQLite |
-| ORM | SQLAlchemy |
-| Authentication | JWT |
-| Password Security | bcrypt / Passlib |
-| Validation | Pydantic |
-| AI | Groq / `openai/gpt-oss-20b` |
-| API Documentation | Swagger / OpenAPI |
-| Testing | Pytest |
-| Rate Limiting | SlowAPI |
-| Deployment | Render |
+- Python
+- FastAPI
+- SQLAlchemy
+- SQLite
+- JWT
+- bcrypt / Passlib
+- Pydantic
+- Groq API
+- SlowAPI
+- Pytest
+- Swagger / OpenAPI
+- Render
 
 ---
 
 ## 🏗️ Architecture
 
 ```text
-                         Client
-                           │
-                           ▼
-                   FastAPI REST API
-                           │
-              ┌────────────┴────────────┐
-              │                         │
-       Rate Limiting              Authentication
-                                      │
-                                JWT + RBAC
-                                      │
-                         ┌────────────┴────────────┐
-                         │                         │
-                  Protected APIs              Admin APIs
-                         │                         │
-                         ▼                         ▼
-                Prompt Detection           Audit Logging
-                         │
-                         ▼
-                     Groq LLM
-                         │
-                         ▼
-                    AI Response
+Client
+  |
+  v
+FastAPI REST API
+  |
+  +-- Rate Limiting
+  |
+  +-- JWT Authentication
+  |      |
+  |      +-- RBAC
+  |
+  +-- Protected APIs
+  |      |
+  |      +-- Prompt Injection Detection
+  |      |
+  |      +-- Groq LLM
+  |
+  +-- Admin APIs
+         |
+         +-- Audit Logging
+                |
+                v
+              SQLite
+```
 
-                         SQLite
-                            ▲
-                            │
-                     Application Data
+---
 
-📖 How It Works
-1. A user registers an account.
-2. The user logs in and receives a JWT access token.
-3. Protected endpoints validate the JWT token.
-4. RBAC determines whether the user has permission to access an endpoint.
-5. Rate limiting controls API request volume.
-6. Prompts sent to the AI endpoint are analyzed for potential prompt injection.
-7. Safe prompts are forwarded to the configured Groq LLM.
-8. The AI response is returned to the client.
-9. Important system activities are recorded through audit logging.
-🛡️ Security Testing
-The deployed API was tested through Swagger UI to verify the implemented security controls.
-🔐 JWT Authentication
+## 🛡️ Security Testing
+
+The deployed API was tested through Swagger UI.
+
+### JWT Authentication
+
+```text
 GET /profile
 → 200 OK
+```
 
-👤 Role-Based Access Control
-A normal user attempting to access the admin endpoint is rejected:
+### Role-Based Access Control
+
+A normal user attempting to access the admin endpoint is rejected.
+
+```text
 GET /admin/logs
 → 403 Forbidden
 → Admin access required
+```
 
-🚨 Prompt Injection Detection
-A prompt attempting to reveal system instructions is blocked:
+### Prompt Injection Detection
+
+```text
 POST /chat
 → 400 Bad Request
 → Blocked suspicious prompt
+```
 
-⏱️ Rate Limiting
-The /chat endpoint enforces a limit of 5 requests per minute:
+### Rate Limiting
+
+The `/chat` endpoint enforces a limit of 5 requests per minute.
+
+```text
 POST /chat
 → 429 Too Many Requests
-→ Rate limit exceeded: 5 per 1 minute
+→ Rate limit exceeded
+```
 
-🤖 Successful AI Request
-Valid authenticated prompts are processed successfully:
+### Successful AI Request
+
+```text
 POST /chat
 → 200 OK
 → AI response
+```
 
-📸 Screenshots
-🏠 Swagger UI
+---
 
-👤 User Registration
+## 📸 Screenshots
 
-🔑 User Login
+### Swagger UI
 
-👤 Protected Profile
+![Swagger Home](screenshots/gate - swagger.png)
 
-🤖 AI Chat
+### User Registration
 
-🔄 Password Reset
+![User Registration](screenshots/gate - register.png)
 
-📋 Admin Audit Logs
+### User Login
 
-📂 Project Structure
+![User Login](screenshots/gate - logins.png)
+
+### Protected Profile
+
+![Protected Profile](screenshots/gate - protected.png)
+
+### AI Chat
+
+![AI Chat](screenshots/gate - chat.png)
+
+### Password Reset
+
+![Password Reset](screenshots/gate - password.png)
+
+### Admin Audit Logs
+
+![Admin Audit Logs](screenshots/gate - logs.png)
+
+---
+
+## 📂 Project Structure
+
+```text
 secure-ai-api-gateway/
-│
-├── app/
-│   ├── __init__.py
-│   ├── admin.py
-│   ├── auth.py
-│   ├── database.py
-│   ├── limiter.py
-│   ├── llm.py
-│   ├── logger.py
-│   ├── main.py
-│   ├── models.py
-│   ├── prompt_filter.py
-│   ├── routes.py
-│   ├── schemas.py
-│   └── security.py
-│
-├── screenshots/
-├── tests/
-├── .gitignore
-├── Dockerfile
-├── pytest.ini
-├── render.yaml
-├── requirements.txt
-└── README.md
+|
++-- app/
+|   +-- __init__.py
+|   +-- admin.py
+|   +-- auth.py
+|   +-- database.py
+|   +-- limiter.py
+|   +-- llm.py
+|   +-- logger.py
+|   +-- main.py
+|   +-- models.py
+|   +-- prompt_filter.py
+|   +-- routes.py
+|   +-- schemas.py
+|   +-- security.py
+|
++-- screenshots/
++-- tests/
++-- .gitignore
++-- Dockerfile
++-- pytest.ini
++-- render.yaml
++-- requirements.txt
++-- README.md
+```
 
-⚙️ Local Setup
-1. Clone the repository
+---
+
+## ⚙️ Local Setup
+
+### 1. Clone the repository
+
+```bash
 git clone https://github.com/Karthikeya172001/secure-ai-api-gateway.git
 cd secure-ai-api-gateway
+```
 
-2. Create a virtual environment
+### 2. Create a virtual environment
+
+```bash
 python -m venv .venv
+```
 
-3. Activate the virtual environment
-Windows
+### 3. Activate the virtual environment
+
+**Windows**
+
+```bash
 .venv\Scripts\activate
+```
 
-Linux / macOS
+**Linux / macOS**
+
+```bash
 source .venv/bin/activate
+```
 
-4. Install dependencies
+### 4. Install dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-5. Configure environment variables
-Create a .env file:
+### 5. Configure environment variables
+
+Create a `.env` file in the project root:
+
+```env
 SECRET_KEY=your_secret_key
 GROQ_API_KEY=your_groq_api_key
+```
 
-Never commit real API keys, JWT secrets, passwords, or other credentials to GitHub.
-6. Run the application
+Never commit real API keys, JWT secrets, or passwords to GitHub.
+
+### 6. Run the application
+
+```bash
 uvicorn app.main:app --reload
+```
 
 Open Swagger UI:
+
 http://127.0.0.1:8000/docs
 
-📡 API Endpoints
-Authentication
-Method	Endpoint	Description
-POST	/register	Register a new user
-POST	/login	Login and receive JWT
-PUT	/reset-password	Reset password
+---
 
+## 📡 API Endpoints
 
-Protected
-Method	Endpoint	Description
-GET	/profile	Get authenticated user profile
-POST	/chat	Send a prompt to the AI service
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/register` | Register a user |
+| POST | `/login` | Login and receive JWT |
+| PUT | `/reset-password` | Reset password |
+| GET | `/profile` | Get authenticated profile |
+| POST | `/chat` | Send a prompt to AI |
+| GET | `/admin/logs` | View audit logs |
+| GET | `/health` | API health check |
 
+---
 
-Admin
-Method	Endpoint	Description
-GET	/admin/logs	View audit logs
+## 🤖 AI Integration
 
+The gateway uses Groq's OpenAI-compatible API to process authenticated AI requests.
 
-System
-Method	Endpoint	Description
-GET	/	API root
-GET	/health	Health check
+### Example Request
 
-
-🔒 Security
-The project implements several API security mechanisms:
-- JWT authentication
-- Password hashing
-- Role-Based Access Control
-- Protected endpoints
-- Rate limiting
-- Prompt-injection detection
-- Audit logging
-- Environment-based secret management
-- HTTPS deployment
-🤖 AI Integration
-The gateway integrates with Groq's OpenAI-compatible API using the configured openai/gpt-oss-20b model.
-Example Request
+```json
 {
-  "prompt": "What is JWT Authentication?"
+  "prompt": "What is JWT authentication?"
 }
+```
 
-Example Response
+### Example Response
+
+```json
 {
   "user": "authenticated_user",
   "response": "AI-generated response..."
 }
-
-🧪 Running Tests
-Run the test suite with:
-pytest
-
-The project uses Pytest for automated testing.
-🚀 Future Improvements
-- Refresh-token rotation
-- Email verification
-- Docker and container improvements
-- CI/CD with GitHub Actions
-- PostgreSQL support
-- Redis-based rate limiting
-- API key management
-- AI risk scoring
-- Personally Identifiable Information (PII) detection
-- Advanced prompt-injection detection
-- Security monitoring and alerting
-👨‍💻 Author
-Gorityala Karthikeya
-Software Engineer focused on Python backend development, FastAPI, AI/LLM applications, authentication, and API security.
-📧 Email: gorityalakarthikey@gmail.com
-🔗 LinkedIn: https://www.linkedin.com/in/karthikeya-gorityala
-💻 GitHub: https://github.com/Karthikeya172001
-🌐 Live API: https://secure-ai-api-gateway.onrender.com
-📖 Swagger UI: https://secure-ai-api-gateway.onrender.com/docs
-📄 License
-This project is licensed under the MIT License.
-⭐ Support
-If you found this project useful, consider giving it a ⭐ on GitHub.
 ```
+
+---
+
+## 🧪 Testing
+
+Run the automated tests locally:
+
+```bash
+pytest
+```
+
+The deployed API was also manually tested for:
+
+- JWT authentication
+- RBAC authorization
+- Prompt-injection blocking
+- Rate limiting
+- Successful AI responses
+
+---
+
+## 👨‍💻 Author
+
+**Gorityala Karthikeya**
+
+Software Engineer | Python | FastAPI | Backend | AI/LLM | API Security
+
+Email: gorityalakarthikey@gmail.com
+
+LinkedIn: https://www.linkedin.com/in/karthikeya-gorityala
+
+GitHub: https://github.com/Karthikeya172001
+
+Project: https://github.com/Karthikeya172001/secure-ai-api-gateway
