@@ -136,19 +136,19 @@ POST /chat
 
 ### Swagger UI
 
-![Swagger Home](screenshots/gate - swagger.png)
+![Swagger Home](screenshots/gate-swagger.png)
 
 ### User Registration
 
-![User Registration](screenshots/gate - register.png)
+![User Registration](screenshots/gate-register.png)
 
 ### User Login
 
-![User Login](screenshots/gate - logins.png)
+![User Login](screenshots/gate-logins.png)
 
 ### Protected Profile
 
-![Protected Profile](screenshots/gate - protected.png)
+![Protected Profile](screenshots/gate-protected.png)
 
 ### AI Chat
 
@@ -156,11 +156,11 @@ POST /chat
 
 ### Password Reset
 
-![Password Reset](screenshots/gate - password.png)
+![Password Reset](screenshots/gate-password.png)
 
 ### Admin Audit Logs
 
-![Admin Audit Logs](screenshots/gate - logs.png)
+![Admin Audit Logs](screenshots/gate-logs.png)
 
 ---
 
