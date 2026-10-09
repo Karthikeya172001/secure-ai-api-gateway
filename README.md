@@ -140,7 +140,7 @@ POST /chat
 
 ### User Registration
 
-![User Registration](screenshots/gate-register.png)
+![User Registration](screenshots/gate-registers.png)
 
 ### User Login
 
